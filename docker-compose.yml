@@ -3,6 +3,7 @@ version: '4.44.2'
 services:
   db:
     image: postgres:13
+    container_name: odoo15_db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=odoo
@@ -12,6 +13,7 @@ services:
 
   odoo:
     image: odoo:15
+    container_name: odoo15_app
     depends_on:
       - db
     ports:
