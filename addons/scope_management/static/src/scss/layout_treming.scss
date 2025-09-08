@@ -1,0 +1,69 @@
+.o_report_layout_bubble {
+    #informations {
+        margin: 0;
+        border: $border-width * 2 solid;
+        border-radius: $border-radius-lg;
+        padding: map-get($spacers, 2) $table-cell-padding-y;
+
+        // In pdf it overlaps with existing margin, set to 0 to replicate in HTML
+        div:first-child {
+            padding-left: 0;
+        }
+
+        div:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+.o_shape_treming_bubble_header {
+    top: -810px;
+    right: -800px;
+}
+
+.o_company_logo_custom {
+    max-height: 6rem;
+    max-width: 9rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.header.o_company_1_layout {
+    //border: 2px solid red;
+}
+
+.custom-header-info-container {
+    display: table !important;
+    width: 100%;
+    //border: 2px solid green;
+}
+
+.custom-header-info-left {
+    display: table;
+    //border: 2px solid yellow;
+}
+
+.custom-header-info-left-img{
+    display: table-cell;
+}
+
+.custom-header-info-left-company-description{
+    display: table-cell;
+}
+
+.o_company_tagline {
+    display: table-cell;
+    text-align: -webkit-right;
+    //border: 2px solid orange;
+}
+
+.o_company_tagline>* {
+    font-size: 16px;
+    width: 9rem;
+    color: #FFFFFF !important;
+    //border:2px solid red
+}
+
+.o_footer_content{
+    position: relative !important;
+}

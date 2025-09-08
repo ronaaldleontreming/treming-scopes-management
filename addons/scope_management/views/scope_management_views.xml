@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Scope Management Kanban view -->
+    <record id="scope_management_view_kanban" model="ir.ui.view">
+        <field name="name">scope.management.kanban</field>
+        <field name="model">scope.management</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div class="oe_kanban_content">
+                                <Strong>Servicio:</Strong>
+                                <field name="name" class="oe_kanban_text_title"/>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <Strong>Equipo de venta:</Strong>
+                                <field name="sales_team" class="oe_kanban_text_title"/>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <Strong>Producto:</Strong>
+                                <field name="product_id" class="oe_kanban_text_title"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Scope Management List View -->
+    <record id="scope_management_view_tree" model="ir.ui.view">
+        <field name="name">scope.management.tree</field>
+        <field name="model">scope.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sales_team"/>
+                <field name="product_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Scope Management Form view -->
+    <record id="scope_management_view_form" model="ir.ui.view">
+        <field name="name">scope.management.form</field>
+        <field name="model">scope.management</field>
+        <field name="arch" type="xml">
+            <form string="Scopes">
+                <sheet class="o_scope_form_sheet_bg">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" string="Module/Service" placeholder="Module/Service..." class="o_field_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Información Principal">
+                            <field name="sales_team" string="Línea de negocio" placeholder="Digita para buscar una linea de negocio"/>
+                            <field name="product_id" string="Producto" placeholder="Digita para buscar un producto"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Alcances">
+                            <field name="description" class="oe_description" placeholder="Alcance 1..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Scope Management Search View-->
+    <record id="scope_management_view_search" model="ir.ui.view">
+        <field name="name">scope.management.search</field>
+        <field name="model">scope.management</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sales_team"/>
+                <field name="product_id"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Main Action -->
+    <record id="action_scope_management" model="ir.actions.act_window">
+        <field name="name">Scope Management</field>
+        <field name="res_model">scope.management</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No scope items found. Let's create one!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_report_scope_proposal" model="ir.actions.report">
+        <field name="name">Scope Proposal</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">scope_management.report_saleorder_proposal_unified</field>
+        <field name="report_file">scope_management.report_saleorder_proposal_unified</field>
+        <field name="print_report_name">'Scope - %s' % (object.name)</field>
+    </record>
+
+    <!-- View associations for the main action -->
+    <record model="ir.actions.act_window.view" id="action_scope_management_kanban_view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="scope_management_view_kanban"/>
+        <field name="act_window_id" ref="action_scope_management"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_scope_management_tree_view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="scope_management_view_tree"/>
+        <field name="act_window_id" ref="action_scope_management"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_scope_management_form_view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="scope_management_view_form"/>
+        <field name="act_window_id" ref="action_scope_management"/>
+    </record>
+
+</odoo>

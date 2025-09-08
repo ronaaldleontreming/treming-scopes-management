@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="menu_scope_management" name="Scopes" parent="sale.menu_sale_config" action="action_scope_management" />
+</odoo>
