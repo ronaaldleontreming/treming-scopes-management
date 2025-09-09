@@ -10,12 +10,13 @@
     'auto_install': True,
     'data': [
         'security/ir.model.access.csv',
+        'report/report_layout.xml',
         'views/trscma_scope_management_tr.xml',
         'views/trscma_scope_management_menu_tr.xml',
     ],
     'assets': {
         'web.report_assets_common': [
-            'scope_management/static/src/scss/layout_*.scss',
+            'treming_scope_management/static/src/scss/layout_treming.scss',
         ],
     },
     'installable': True,

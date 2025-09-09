@@ -1,69 +1,52 @@
-.o_report_layout_bubble {
-    #informations {
-        margin: 0;
-        border: $border-width * 2 solid;
-        border-radius: $border-radius-lg;
-        padding: map-get($spacers, 2) $table-cell-padding-y;
-
-        // In pdf it overlaps with existing margin, set to 0 to replicate in HTML
-        div:first-child {
-            padding-left: 0;
-        }
-
-        div:last-child {
-            padding-right: 0;
-        }
-    }
-}
-
-.o_shape_treming_bubble_header {
-    top: -810px;
-    right: -800px;
-}
-
-.o_company_logo_custom {
-    max-height: 6rem;
-    max-width: 9rem;
-    margin-top: 1rem;
-    margin-left: 3rem;
-}
-
-.header.o_company_1_layout {
-    //border: 2px solid red;
-}
-
-.custom-header-info-container {
-    display: table !important;
-    width: 100%;
-    //border: 2px solid green;
-}
-
-.custom-header-info-left {
+//ODOO 15
+.treming-header-container {
     display: table;
-    //border: 2px solid yellow;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
 }
 
-.custom-header-info-left-img{
+.treming-header-row {
+    display: table-row;
+}
+
+.treming-header-column {
     display: table-cell;
+    width: auto;
 }
 
-.custom-header-info-left-company-description{
-    display: table-cell;
+.treming-header-row:first-child .treming-header-column:nth-child(1) {
+    width: 25%;
+    max-width: fit-content;
 }
 
-.o_company_tagline {
-    display: table-cell;
-    text-align: -webkit-right;
-    //border: 2px solid orange;
+.treming-header-row:first-child .treming-header-column:nth-child(2) {
+    width: 50%;
+    max-width: max-content;
 }
 
-.o_company_tagline>* {
-    font-size: 16px;
-    width: 9rem;
-    color: #FFFFFF !important;
-    //border:2px solid red
+.treming-header-row:first-child .treming-header-column:nth-child(3) {
+    width: 25%;
+    max-width: fit-content;
 }
 
-.o_footer_content{
-    position: relative !important;
+.company-logo{
+    max-width: 108px !important;
+    max-height: 30px !important;
+    margin-left: 3rem;
+    margin-right: 0px !important;
+}
+
+.company-tagline{
+    max-width: 10rem;
+}
+
+.company-tagline > h3{
+    color: #FFFFFF;
+}
+
+.company-address{
+    display: flex;
+    flex-wrap:wrap;
+    margin: 0px !important;
 }
