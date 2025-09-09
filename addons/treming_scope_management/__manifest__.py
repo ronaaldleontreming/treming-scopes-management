@@ -10,7 +10,6 @@
     'auto_install': True,
     'data': [
         'security/ir.model.access.csv',
-        'views/sales_team_document.xml',
         'views/trscma_scope_management_tr.xml',
         'views/trscma_scope_management_menu_tr.xml',
     ],
