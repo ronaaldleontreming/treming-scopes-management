@@ -2,8 +2,8 @@
 <odoo>
 
     <!-- Scope Management Kanban view -->
-    <record id="scope_management_view_kanban" model="ir.ui.view">
-        <field name="name">scope.management.kanban</field>
+    <record id="trscma_scope_management_tr_view_kanban" model="ir.ui.view">
+        <field name="name">trscma.scope.management.tr.kanban</field>
         <field name="model">scope.management</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_small_column">
@@ -30,8 +30,8 @@
     </record>
 
     <!-- Scope Management List View -->
-    <record id="scope_management_view_tree" model="ir.ui.view">
-        <field name="name">scope.management.tree</field>
+    <record id="trscma_scope_management_tr_view_tree" model="ir.ui.view">
+        <field name="name">trscma.scope.management.tr.tree</field>
         <field name="model">scope.management</field>
         <field name="arch" type="xml">
             <tree>
@@ -43,8 +43,8 @@
     </record>
 
     <!-- Scope Management Form view -->
-    <record id="scope_management_view_form" model="ir.ui.view">
-        <field name="name">scope.management.form</field>
+    <record id="trscma_scope_management_tr_view_form" model="ir.ui.view">
+        <field name="name">trscma.scope.management.tr.form</field>
         <field name="model">scope.management</field>
         <field name="arch" type="xml">
             <form string="Scopes">
@@ -71,8 +71,8 @@
     </record>
 
     <!-- Scope Management Search View-->
-    <record id="scope_management_view_search" model="ir.ui.view">
-        <field name="name">scope.management.search</field>
+    <record id="trscma_scope_management_tr_view_search" model="ir.ui.view">
+        <field name="name">trscma.scope.management.tr.search</field>
         <field name="model">scope.management</field>
         <field name="arch" type="xml">
             <search>
@@ -85,7 +85,7 @@
     </record>
 
     <!-- Main Action -->
-    <record id="action_scope_management" model="ir.actions.act_window">
+    <record id="trscma_scope_management_tr_action" model="ir.actions.act_window">
         <field name="name">Scope Management</field>
         <field name="res_model">scope.management</field>
         <field name="view_mode">kanban,tree,form</field>
@@ -101,8 +101,8 @@
         <field name="name">Scope Proposal</field>
         <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">scope_management.report_saleorder_proposal_unified</field>
-        <field name="report_file">scope_management.report_saleorder_proposal_unified</field>
+        <field name="report_name">trscma.scope.management.tr.report_saleorder_proposal_unified</field>
+        <field name="report_file">trscma.scope.management.tr.report_saleorder_proposal_unified</field>
         <field name="print_report_name">'Scope - %s' % (object.name)</field>
     </record>
 
@@ -110,22 +110,21 @@
     <record model="ir.actions.act_window.view" id="action_scope_management_kanban_view">
         <field name="sequence" eval="1"/>
         <field name="view_mode">kanban</field>
-        <field name="view_id" ref="scope_management_view_kanban"/>
-        <field name="act_window_id" ref="action_scope_management"/>
+        <field name="view_id" ref="trscma_scope_management_tr_view_kanban"/>
+        <field name="act_window_id" ref="trscma_scope_management_tr_action"/>
     </record>
-
     <record model="ir.actions.act_window.view" id="action_scope_management_tree_view">
         <field name="sequence" eval="2"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="scope_management_view_tree"/>
-        <field name="act_window_id" ref="action_scope_management"/>
+        <field name="view_id" ref="trscma_scope_management_tr_view_tree"/>
+        <field name="act_window_id" ref="trscma_scope_management_tr_action"/>
     </record>
 
     <record model="ir.actions.act_window.view" id="action_scope_management_form_view">
         <field name="sequence" eval="3"/>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="scope_management_view_form"/>
-        <field name="act_window_id" ref="action_scope_management"/>
+        <field name="view_id" ref="trscma_scope_management_tr_view_form"/>
+        <field name="act_window_id" ref="trscma_scope_management_tr_action"/>
     </record>
 
 </odoo>

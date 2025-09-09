@@ -10,8 +10,9 @@
     'auto_install': True,
     'data': [
         'security/ir.model.access.csv',
-        'views/scope_management_views.xml',
-        'views/scope_management_menus.xml',
+        'views/sales_team_document.xml',
+        'views/trscma_scope_management_tr.xml',
+        'views/trscma_scope_management_menu_tr.xml',
     ],
     'assets': {
         'web.report_assets_common': [
