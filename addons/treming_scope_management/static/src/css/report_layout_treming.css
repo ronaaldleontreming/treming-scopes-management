@@ -1,0 +1,55 @@
+/* Odoo 15 - Treming Scope Management Styles */
+
+/* Header background */
+.o_background_header {
+    border: none !important;
+}
+
+/* SVG header design */
+.treming-header-design {
+    position: fixed;
+    top: -875px; /* Verify if this negative offset is intentional */
+    left: 515px;
+    z-index: -1;
+}
+
+/* Header info container */
+.treming-header-info {
+    border: none !important; /* Use !important sparingly */
+    margin-bottom: 48px;
+
+}
+
+/* Tagline container */
+.company-tagline-container {
+    display: flex; /* Changed to flex for justify-content */
+    justify-content: flex-end; /* Aligns content to the right */
+    margin-top: 46px;
+}
+
+/* Company logo */
+.company-logo {
+    max-height: 6.5rem !important;
+    max-width: 9.5rem !important;
+    margin-top: 84px;
+    margin-left: 80px;
+}
+
+.treming-company_address{
+    margin-top:46px;
+}
+
+.company-address{
+    margin-top:1rem;
+}
+
+/* Company tagline */
+.company-tagline > * {
+    width: 9rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.25rem;
+    max-width: 300px; /* Added semicolon */
+    text-align: right;
+    margin-right: 12px;
+}

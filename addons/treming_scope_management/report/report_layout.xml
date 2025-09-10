@@ -4,20 +4,20 @@
 		<!-- Nuevo template QWeb para el layout personalizado -->
 		<template id="external_layout_treming" name="Treming Report Layout">
 			<!-- HEADER -->
-			<div t-attf-class="o_company_#{company.id}_layout header" t-att-style="report_header_style">
+			<div t-attf-class="o_company_#{company.id}_layout header treming-header-info" t-att-style="report_header_style">
 				<svg class="treming-header-design"
 				     width="1100" height="1100"
 				     xmlns="http://www.w3.org/2000/svg">
-					<circle cx="550" cy="550" r="550" fill="#001E41" fill-opacity="1"></circle>
+					<circle cx="550" cy="550" r="550" fill="#001E41" fill-opacity="1"/>
 				</svg>
 
 				<div class="o_background_header">
 					<div class="float-right company-tagline-container">
-						<h3 class="mt0 text-right company-tagline" t-field="company.report_header"/>
+						<div class="mt0 company-tagline" t-field="company.report_header"/>
 					</div>
 					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left company-logo"
 					     alt="Logo"/>
-					<div class="float-left company_address">
+					<div class="float-left treming-company_address">
 						<ul class="list-unstyled" t-if="company.company_details or forced_vat">
 							<li t-if="company.company_details">
 								<t t-esc="company.company_details"/>
@@ -39,7 +39,7 @@
 			     t-att-data-oe-lang="o and o.env.context.get('lang')">
 				<t t-set="colclass" t-value="('col-sm-5' if report_type == 'html' else 'col-5')"/>
 				<t t-if="address">
-					<div class="address">
+					<div class="address company-address">
 						<div name="address" t-att-class="colclass">
 							<t t-esc="address"/>
 						</div>
@@ -63,8 +63,8 @@
 					<div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
 						<span t-field="o.name"/>
 					</div>
-				</div>
-			</div>
+`				</div>
+`			</div>
 		</template>
 
 		<!-- Registrar el nuevo layout en el modelo report.layout -->
@@ -72,6 +72,8 @@
 			<field name="name">Treming</field>
 			<field name="sequence">10</field>
 			<field name="view_id" ref="treming_scope_management.external_layout_treming"/>
+			<field name="image">/web/static/img/preview_background.png</field>
+			<field name="pdf">/web/static/pdf/preview_background.pdf</field>
 		</record>
 
 		<!-- Añadir estilos dinámicos para el nuevo layout -->
