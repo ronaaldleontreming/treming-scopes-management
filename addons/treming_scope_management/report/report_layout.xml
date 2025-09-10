@@ -1,101 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Nuevo template QWeb para el layout personalizado -->
-        <template id="external_layout_treming" name="Treming Report Layout">
-            <!-- HEADER -->
-            <div t-attf-class="o_company_#{company.id}_layout" t-att-style="report_header_style">
-                <div class="o_background_header container">
-                    <div class="row">
-                        <div class="custom-header-info-left-img col-sm">
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left company-logo" alt="Logo"/>
-                        </div>
-                        <div class="float-lef col-sm">
-                            <ul class="list-unstyled" t-if="company.company_details or forced_vat">
-                                <li t-if="company.company_details">
-                                    <t t-esc="company.company_details"/>
-                                </li>
-                                <li t-if="forced_vat">
-                                    <t t-esc="company.country_id.vat_label or 'Tax ID'"/>
-:                                    <span t-esc="forced_vat"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="float-right col-sm company-tagline">
-                            <h3 class="mt0 text-right" t-field="company.report_header"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <t t-set="colclass" t-value="('col-sm-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/>
-                        <t t-if="address">
-                            <div class="address col company-address">
-                                <div name="address" t-att-class="colclass">
-                                    <t t-esc="address"/>
-                                </div>
-                            </div>
-                        </t>
-                    </div>
-                </div>
-            </div>
+	<data>
+		<!-- Nuevo template QWeb para el layout personalizado -->
+		<template id="external_layout_treming" name="Treming Report Layout">
+			<!-- HEADER -->
+			<div t-attf-class="o_company_#{company.id}_layout header" t-att-style="report_header_style">
+				<svg class="treming-header-design"
+				     width="1100" height="1100"
+				     xmlns="http://www.w3.org/2000/svg">
+					<circle cx="550" cy="550" r="550" fill="#001E41" fill-opacity="1"></circle>
+				</svg>
 
-            <!-- BODY -->
-            <div t-attf-class="o_company_#{company.id}_layout article o_report_layout_treming {{ 'o_layout_background' if company.layout_background in ['Geometric', 'Custom'] else '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % to_base64(company.layout_background_image) if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
-                <t t-out="0"/>
-            </div>
+				<div class="o_background_header">
+					<div class="float-right company-tagline-container">
+						<h3 class="mt0 text-right company-tagline" t-field="company.report_header"/>
+					</div>
+					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left company-logo"
+					     alt="Logo"/>
+					<div class="float-left company_address">
+						<ul class="list-unstyled" t-if="company.company_details or forced_vat">
+							<li t-if="company.company_details">
+								<t t-esc="company.company_details"/>
+							</li>
+							<li t-if="forced_vat">
+								<t t-esc="company.country_id.vat_label or 'Tax ID'"/>:
+								<span t-esc="forced_vat"/>
+							</li>
+						</ul>
+					</div>
+					<div class="clearfix mb8"/>
+				</div>
+			</div>
 
-            <!-- FOOTER -->
-            <div t-attf-class="o_company_#{company.id}_layout footer o_background_footer">
-                <div class="text-center">
-                    <ul class="list-inline">
-                        <div t-field="company.report_footer"/>
-                    </ul>
-                    <div t-if="report_type == 'pdf'" class="text-muted">
-                        Page: <span class="page"/>
- of <span class="topage"/>
-                </div>
-                <div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
-                    <span t-field="o.name"/>
-                </div>
-            </div>
-        </div>
-    </template>
+			<!-- BODY -->
+			<div t-attf-class="o_company_#{company.id}_layout article o_report_layout_striped {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"
+			     t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});"
+			     t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+			     t-att-data-oe-lang="o and o.env.context.get('lang')">
+				<t t-set="colclass" t-value="('col-sm-5' if report_type == 'html' else 'col-5')"/>
+				<t t-if="address">
+					<div class="address">
+						<div name="address" t-att-class="colclass">
+							<t t-esc="address"/>
+						</div>
+					</div>
+				</t>
+				<t t-out="0"/>
+			</div>
 
-    <!-- Registrar el nuevo layout en el modelo report.layout -->
-    <record id="report_layout_custom" model="report.layout">
-        <field name="name">Treming</field>
-        <field name="sequence">10</field>
-        <field name="view_id" ref="treming_scope_management.external_layout_treming"/>
-    </record>
+			<!-- FOOTER -->
+			<div t-attf-class="o_company_#{company.id}_layout footer o_background_footer">
+				<div class="text-center">
+					<ul class="list-inline">
+						<div t-field="company.report_footer"/>
+					</ul>
+					<div t-if="report_type == 'pdf'" class="text-muted">
+						Page:
+						<span class="page"/>
+						of
+						<span class="topage"/>
+					</div>
+					<div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
+						<span t-field="o.name"/>
+					</div>
+				</div>
+			</div>
+		</template>
 
-    <!-- Añadir estilos dinámicos para el nuevo layout -->
-    <template id="styles_custom_layout" inherit_id="web.styles_company_report">
-        <xpath expr="//t[@t-foreach='company_ids']" position="inside">
-            <t t-if="layout == 'treming_scope_management.external_layout_treming'">
-                       .o_report_layout_striped strong {
-    color: <t t-esc='secondary'/>
-;
-}
-.o_report_layout_striped h2 {
-    color: <t t-esc='primary'/>
-;
-}
-.o_report_layout_striped thead tr th {
-    color: <t t-esc='secondary'/>
-;
-}
-.o_report_layout_striped .row > div > table :first-child strong,
-.o_report_layout_striped .row > div > table :last-child strong,
-.o_report_layout_striped .row > div > table .o_subtotal strong,
-.o_report_layout_striped .row > div > table .o_total strong,
-.o_report_layout_striped div#total table :first-child strong,
-.o_report_layout_striped div#total table :last-child strong,
-.o_report_layout_striped div#total table .o_subtotal strong,
-.o_report_layout_striped div#total table .o_total strong {
-    color: <t t-esc='primary'/>
-;
-}
-</t>
-</xpath>
-</template>
-</data>
+		<!-- Registrar el nuevo layout en el modelo report.layout -->
+		<record id="report_layout_custom" model="report.layout">
+			<field name="name">Treming</field>
+			<field name="sequence">10</field>
+			<field name="view_id" ref="treming_scope_management.external_layout_treming"/>
+		</record>
+
+		<!-- Añadir estilos dinámicos para el nuevo layout -->
+		<template id="styles_custom_layout" inherit_id="web.styles_company_report">
+			<xpath expr="//t[@t-foreach='company_ids']" position="inside">
+				<t t-if="layout == 'treming_scope_management.external_layout_treming'">
+					.o_report_layout_striped strong {
+					color:
+					<t t-esc='secondary'/>
+					;
+					}
+					.o_report_layout_striped h2 {
+					color:
+					<t t-esc='primary'/>
+					;
+					}
+					.o_report_layout_striped thead tr th {
+					color:
+					<t t-esc='secondary'/>
+					;
+					}
+					.o_report_layout_striped .row > div > table :first-child strong,
+					.o_report_layout_striped .row > div > table :last-child strong,
+					.o_report_layout_striped .row > div > table .o_subtotal strong,
+					.o_report_layout_striped .row > div > table .o_total strong,
+					.o_report_layout_striped div#total table :first-child strong,
+					.o_report_layout_striped div#total table :last-child strong,
+					.o_report_layout_striped div#total table .o_subtotal strong,
+					.o_report_layout_striped div#total table .o_total strong {
+					color:
+					<t t-esc='primary'/>
+					;
+					}
+				</t>
+			</xpath>
+		</template>
+	</data>
 </odoo>

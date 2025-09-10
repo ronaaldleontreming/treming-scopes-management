@@ -1,52 +1,23 @@
 //ODOO 15
-.treming-header-container {
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: auto;
-}
-
-.treming-header-row {
-    display: table-row;
-}
-
-.treming-header-column {
-    display: table-cell;
-    width: auto;
-}
-
-.treming-header-row:first-child .treming-header-column:nth-child(1) {
-    width: 25%;
-    max-width: fit-content;
-}
-
-.treming-header-row:first-child .treming-header-column:nth-child(2) {
-    width: 50%;
-    max-width: max-content;
-}
-
-.treming-header-row:first-child .treming-header-column:nth-child(3) {
-    width: 25%;
-    max-width: fit-content;
+.o_background_header{
+    position: relative;
+    }
+.treming-header-design{
+    position: absolute;
+    top: -825px;
+    right: -825px;
+    z-index: -1;
 }
 
 .company-logo{
-    max-width: 108px !important;
-    max-height: 30px !important;
     margin-left: 3rem;
-    margin-right: 0px !important;
 }
 
+.company-tagline-container{
+    display: block;
+    justify-items: end;
+}
 .company-tagline{
-    max-width: 10rem;
-}
-
-.company-tagline > h3{
-    color: #FFFFFF;
-}
-
-.company-address{
-    display: flex;
-    flex-wrap:wrap;
-    margin: 0px !important;
+    max-width: 50% !important;
+    color: #FFFFFF !important;
 }
