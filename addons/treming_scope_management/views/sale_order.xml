@@ -1,0 +1,24 @@
+<odoo>
+    <record id="sale_team_form_inherit_sale_pdf_quote_builder" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.scope.proposal</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Ubicar pestaña Quote Builder -->
+            <xpath expr="//page/field[@name='order_line']/.." position="after">
+	            <page string="Product Scopes">
+                <div class="mb-4">
+                    <div class="mb-2">
+                        <h3>
+                            Product Scopes Detected:
+                            <field name="related_scope_products" readonly="1" />
+                        </h3>
+                    </div>
+                </div>
+	            </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

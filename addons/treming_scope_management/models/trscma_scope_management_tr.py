@@ -24,10 +24,14 @@ class ScopeManagement(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('description') and not vals.get('name'):
+                text = html2plaintext(vals['description'])
+                name = text.strip().replace('*', '').partition("\n")[0]
+                vals['name'] = (name[:97] + '...') if len(name) > 100 else name
         records = super().create(vals_list)
         for record in records:
             if record.product_id:
-                # Sincronizar automáticamente: asignar este scope al producto
                 record.product_id.write({'scope_id': record.id})
         return records
 
@@ -42,12 +46,3 @@ class ScopeManagement(models.Model):
                 if vals.get('product_id') is False and record.product_id:
                     record.product_id.write({'scope_id': False})
         return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get('description') and not vals.get('name'): # Corregí la condición para evitar error si description no existe
-                text = html2plaintext(vals['description'])
-                name = text.strip().replace('*', '').partition("\n")[0]
-                vals['name'] = (name[:97] + '...') if len(name) > 100 else name
-        return super().create(vals_list)

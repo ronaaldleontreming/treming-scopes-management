@@ -1,3 +1,3 @@
 <odoo>
-    <menuitem id="menu_scope_management" name="Scopes" parent="sale.menu_sale_config" action="trscma_scope_management_tr_action" />
+    <menuitem id="menu_scope_management" name="Scopes" parent="sale.menu_sale_config" action="scope_management_action" />
 </odoo>

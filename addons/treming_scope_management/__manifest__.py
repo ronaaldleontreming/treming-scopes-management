@@ -12,9 +12,14 @@
     'auto_install': False,
     'data': [
         'security/ir.model.access.csv',
-        'report/report_layout.xml',
+        'views/crm_team.xml',
+        'views/product_template_views.xml',
+        'views/sale_order.xml',
         'views/trscma_scope_management_tr.xml',
+        'report/report_scope_proposal.xml',
         'views/trscma_scope_management_menu_tr.xml',
+        'report/report_layout.xml',
+
     ],
     'assets': {
         'web.assets_backend': [

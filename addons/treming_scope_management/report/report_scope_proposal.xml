@@ -1,0 +1,79 @@
+<odoo>
+	<data>
+		<!-- Reporte Principal -->
+		<report
+				id="action_report_scope_proposal"
+				model="sale.order"
+				string="Technical Proposal"
+				report_type="qweb-pdf"
+				name="treming_scope_management.report_scope_proposal_template"
+				file="treming_scope_management.report_scope_proposal_template"
+				print_report_name="'Propuesta Técnica - %s' % (object.name)"
+		/>
+
+		<!-- Template principal que llama al documento -->
+		<template id="report_scope_proposal_template">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="treming_scope_management.report_scope_proposal_document" t-lang="doc.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+		<!-- Template del contenido del reporte -->
+		<template id="report_scope_proposal_document">
+			<t t-call="web.external_layout">
+				<t t-set="doc" t-value="doc"/>
+				<div class="page">
+					<h2>Propuesta Técnica para
+						<t t-esc="doc.name"/>
+					</h2>
+
+					<t t-if="not doc.order_line">
+						<p>No se encontraron líneas de orden en esta propuesta.</p>
+					</t>
+
+					<t t-foreach="doc.order_line" t-as="line">
+						<div style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+							<t t-set="scope"
+							   t-value="doc.related_scope_ids.filtered(lambda s: s.product_id == line.product_id)[:1]"/>
+							<t t-if="scope">
+								<h5>Tecnología:
+									<span class="fw-bold">
+										<t t-esc="scope.name or 'Sin nombre de alcance'"/>
+									</span>
+								</h5>
+								<div>
+									<h5>Producto:
+										<span class="fw-bold">
+											<t t-esc="line.product_id.name"/>
+										</span>
+									</h5>
+									<t t-if="scope.description">
+										<t t-out="scope.description"/>
+									</t>
+									<t t-else="">
+										<p>Sin descripción disponible</p>
+									</t>
+								</div>
+							</t>
+							<t t-else="">
+								<div>
+									<h5>Producto:
+										<span class="fw-bold">
+											<t t-esc="line.product_id.name"/>
+										</span>
+									</h5>
+									<p>
+										Error: No se encontró un alcance asociado para este producto (
+										<t t-esc="line.product_id.name"/>). Verifica la relación en Alcances.
+									</p>
+								</div>
+							</t>
+						</div>
+					</t>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

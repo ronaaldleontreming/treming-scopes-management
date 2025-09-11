@@ -20,8 +20,7 @@ class CrmTeam(models.Model):
         attachment=True
     )
     trscma_proposal_footer_pdf_filename_tr = fields.Char(string="Footer filename")
-    
-    
+
     @api.constrains("trscma_include_technical_proposal_tr")
     def _check_min_pdfs(self):
         for team in self:
