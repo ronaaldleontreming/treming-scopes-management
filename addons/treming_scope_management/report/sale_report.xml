@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_inherit" inherit_id="sale.report_saleorder">
+        <xpath expr="//t[@t-call='sale.report_saleorder_document']" position="after">
+            <t t-call="treming_scope_management.report_scope_proposal_template" t-lang="doc.partner_id.lang"/>
+        </xpath>
+    </template>
+</odoo>

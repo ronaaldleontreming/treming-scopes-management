@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="trscma_crm_team_view_form_tech_proposal" model="ir.ui.view">
-            <field name="name">crm.team.form.trscma.tech.proposal</field>
-            <field name="model">crm.team</field>
-            <field name="inherit_id" ref="sales_team.crm_team_view_form" />
-            <field name="arch" type="xml">
+	<data>
+		<record id="trscma_crm_team_view_form_tech_proposal" model="ir.ui.view">
+			<field name="name">crm.team.form.trscma.tech.proposal</field>
+			<field name="model">crm.team</field>
+			<field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+			<field name="arch" type="xml">
 
-                <xpath expr="//form/sheet//group[@name='left']" position="inside">
-                    <field name="trscma_include_technical_proposal_tr" widget="boolean_toggle" class="o_horizontal_label o_highlight"/>
-                </xpath>
+				<xpath expr="//form/sheet//group[@name='left']" position="inside">
+					<field name="trscma_include_technical_proposal_tr" widget="boolean_toggle"
+					       class="o_horizontal_label o_highlight"/>
+				</xpath>
 
-                <xpath expr="//form/sheet/notebook" position="inside">
-                    <page string="Technical Proposal"
-                        attrs="{'invisible': [('trscma_include_technical_proposal_tr','=', False)]}">
-                        <group>
-                            <group>
-                                <label for="trscma_proposal_header_pdf_tr" />
-                                <div>
-                                    <span class="text-muted">PDF document</span>
-                                    <field name="trscma_proposal_header_pdf_tr"
-                                        filename="trscma_proposal_header_pdf_filename_tr"
-                                        widget="binary"
-                                        options="{'accept':'application/pdf'}" />
-                                    <field name="trscma_proposal_header_pdf_filename_tr" invisible="1" />
-                                </div>
-                            </group>
-                            <group>
-                                <label for="trscma_proposal_footer_pdf_tr" />
-                                <div>
-                                    <span class="text-muted">PDF document</span>
-                                    <field name="trscma_proposal_footer_pdf_tr"
-                                        filename="trscma_proposal_footer_pdf_filename_tr"
-                                        widget="binary"
-                                        options="{'accept':'application/pdf'}" />
-                                    <field name="trscma_proposal_footer_pdf_filename_tr" invisible="1" />
-                                </div>
-                            </group>
-                        </group>
-                    </page>
-                </xpath>
+				<xpath expr="//form/sheet/notebook" position="inside">
+					<page string="Technical Proposal"
+					      attrs="{'invisible': [('trscma_include_technical_proposal_tr','=', False)]}">
+						<group>
+							<group>
+								<label for="trscma_proposal_header_pdf_tr"/>
+								<div>
+									<span class="text-muted">PDF document</span>
+									<field name="trscma_proposal_header_pdf_tr"
+									       filename="trscma_proposal_header_pdf_filename_tr"
+									       widget="binary"
+									       options="{'accept':'application/pdf'}"/>
+									<field name="trscma_proposal_header_pdf_filename_tr" invisible="1"/>
+								</div>
+							</group>
+							<group>
+								<label for="trscma_proposal_footer_pdf_tr"/>
+								<div>
+									<span class="text-muted">PDF document</span>
+									<field name="trscma_proposal_footer_pdf_tr"
+									       filename="trscma_proposal_footer_pdf_filename_tr"
+									       widget="binary"
+									       options="{'accept':'application/pdf'}"/>
+									<field name="trscma_proposal_footer_pdf_filename_tr" invisible="1"/>
+								</div>
+							</group>
+						</group>
+					</page>
+				</xpath>
 
-            </field>
-        </record>
-    </data>
+				<!-- Agregar campos de attachment como invisibles -->
+				<xpath expr="//form/sheet" position="inside">
+					<field name="header_attachment_id" invisible="1"/>
+					<field name="footer_attachment_id" invisible="1"/>
+				</xpath>
+
+			</field>
+		</record>
+	</data>
 </odoo>

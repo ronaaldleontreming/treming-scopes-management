@@ -1,15 +1,16 @@
 <odoo>
 	<data>
 		<!-- Reporte Principal -->
-		<report
-				id="action_report_scope_proposal"
-				model="sale.order"
-				string="Technical Proposal"
-				report_type="qweb-pdf"
-				name="treming_scope_management.report_scope_proposal_template"
-				file="treming_scope_management.report_scope_proposal_template"
-				print_report_name="'Propuesta Técnica - %s' % (object.name)"
-		/>
+		<record id="action_report_scope_proposal" model="ir.actions.report">
+			<field name="name">Technical Proposal</field>
+			<field name="model">sale.order</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">treming_scope_management.report_scope_proposal_template</field>
+			<field name="report_file">treming_scope_management.report_scope_proposal_template</field>
+			<field name="print_report_name">'Propuesta Técnica - %s' % (object.name)</field>
+			<field name="binding_model_id" ref="sale.model_sale_order"/>
+			<field name="binding_type">report</field>
+		</record>
 
 		<!-- Template principal que llama al documento -->
 		<template id="report_scope_proposal_template">
@@ -74,6 +75,11 @@
 					</t>
 				</div>
 			</t>
+		</template>
+		<template id="report_saleorder_inherit" inherit_id="sale.report_saleorder">
+			<xpath expr="//t[@t-call='sale.report_saleorder_document']" position="after">
+				<t t-call="treming_scope_management.report_scope_proposal_template" t-lang="doc.partner_id.lang"/>
+			</xpath>
 		</template>
 	</data>
 </odoo>

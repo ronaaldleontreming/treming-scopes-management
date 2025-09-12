@@ -4,7 +4,8 @@
 		<!-- Nuevo template QWeb para el layout personalizado -->
 		<template id="external_layout_treming" name="Treming Report Layout">
 			<!-- HEADER -->
-			<div t-attf-class="o_company_#{company.id}_layout header treming-header-info" t-att-style="report_header_style">
+			<div t-attf-class="o_company_#{company.id}_layout header treming-header-info"
+			     t-att-style="report_header_style">
 				<svg class="treming-header-design"
 				     width="1100" height="1100"
 				     xmlns="http://www.w3.org/2000/svg">
@@ -63,8 +64,8 @@
 					<div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
 						<span t-field="o.name"/>
 					</div>
-`				</div>
-`			</div>
+				</div>
+			</div>
 		</template>
 
 		<!-- Registrar el nuevo layout en el modelo report.layout -->
